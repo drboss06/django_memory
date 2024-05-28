@@ -1,0 +1,26 @@
+{% load socialaccount %}
+
+{% block extra_head %}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-center mb-4">Добро пожаловать на наш сервис</h1>
+                <p class="text-center">Наш сервис предлагает вам удобный способ управления вашими воспоминаниями. Войдите, чтобы начать пользоваться всеми возможностями.</p>
+                
+                <div class="d-flex justify-content-center mt-4">
+                    <a href="{% provider_login_url 'vk' %}" class="btn btn-primary btn-lg mr-2">
+                        Войти с помощью VK
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

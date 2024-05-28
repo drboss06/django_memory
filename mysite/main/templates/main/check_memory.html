@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Мои воспоминания{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        {% if user_name and user_photo %}
+            <div class="d-flex align-items-center mb-4">
+                <img src="{{ user_photo }}" alt="Фотография пользователя" class="mr-2" style="width: 50px; height: 50px; border-radius: 50%;">
+                <h4>{{ user_name }}</h4>
+            </div>
+        {% endif %}
+        
+        <h1 class="mb-4">Мои воспоминания</h1>
+        {% if memories %}
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for memory in memories %}
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ memory.name_memorie }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ memory.place }}</h6>
+                                <p class="card-text">{{ memory.description_memorie }}</p>
+                                <a href="{% url 'main:edit_memory' memory.id %}" class="btn btn-primary">Изменить</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="mt-4">
+                <a href="{% url 'main:add_memory' %}" class="btn btn-primary">Добавить воспоминание</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

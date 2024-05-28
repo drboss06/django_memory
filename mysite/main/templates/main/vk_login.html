@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Site</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <p>Добро пожаловать, {{ user.username }}</p>
+        <p><a href="{% url 'logout' %}">Выйти</a></p>
+    {% else %}
+        <p><a href="{% url 'vk_login' 'vk-oauth2' %}">Войти через ВКонтакте</a></p>
+    {% endif %}
+    {% block content %}{% endblock %}
+</body>
+</html>
