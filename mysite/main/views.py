@@ -74,18 +74,3 @@ def edit_memory(request, memory_id):
 
 
 
-@login_required
-def get_memory(request):
-    if request.method == 'POST':
-        form = MemoryForm(request.POST)
-
-        if form.is_valid():
-            print(form.data['memory_name'], '###############################################')
-            return HttpResponse('<h1>Form is all right</h1>')
-    else:
-        form = MemoryForm()
-        print('FORM IS BEAD', '###############################################')
-    
-    return render(request, 'main/add_memory.html', {'form': form})
-
-
