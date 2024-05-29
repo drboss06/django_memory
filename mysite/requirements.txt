@@ -1,0 +1,7 @@
+Django==5.0.2
+django_allauth==0.63.2
+environs==10.3.0
+Requests==2.32.2
+social_auth_app_django==5.4.1
+psycopg2-binary
+gunicorn

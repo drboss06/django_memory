@@ -9,10 +9,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = env.str("SECRET_KEY")
 
-DEBUG = True
+DEBUG = env.str("DEBUG")
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', env.str("NGROK_DOMEN")]
-CSRF_TRUSTED_ORIGINS = [f'https://{env.str("NGROK_DOMEN")}']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', env.str("DOMEN")]
+CSRF_TRUSTED_ORIGINS = [f'https://{env.str("DOMEN")}']
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 
 
@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.vk',
 ]
 SITE_ID = 1
-SITE_URL = f'https://{env.str("NGROK_DOMEN")}'
+SITE_URL = f'https://{env.str("DOMEN")}'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,10 +78,21 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT'),
     }
 }
 
